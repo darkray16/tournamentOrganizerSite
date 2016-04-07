@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .col-md-12
+    h1= eventID
+
+  .left-wrapper.col-md-4.col-sm-12.col-xs-12
+    .chat-area
+  .right-wrapper.col-md-8.col-sm-12.col-xs-12
+    .control-area
+      .progress-bar
+      .player-info
+        table#playerInfo.table.table-condensed.table-hover
+          tr.playerRow(ng-repeat="match in matches")
+            td.player-{{player.position}}(ng-repeat="player in match.players") {{player.name}}
+            td.confirm-results
+              input(type="checkbox")
+              | Confirm
+      button.complete-round-button.btn.btn-link Complete Round
+      .clock-area.input-group
+        span.format(ng-repeat="format in time.formats").input-group-btn 
+          button.btn.btn-secondary(type="button") {{format.name}}
+        .timer

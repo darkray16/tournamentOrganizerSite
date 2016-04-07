@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= eventID
+
+  table.eventHistory
+    tr.round-{{round.index}}(ng-repeat="round in event.rounds")
+      td.round-name {{round.name}}
+      td.match-{{match.index}}(ng-repeat="match in round.matches")
+        tr.player-{{player.index}}(ng-repeat="player in match.players") {{player.name}}

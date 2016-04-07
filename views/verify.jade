@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  link(rel='stylesheet', href='/stylesheets/verify.css')
+  h1= eventID
+
+  .time.col-md-6
+    .click 1234
+    .description Alloted Time Per Round
+  .format.col-md-6
+    .format-name
+    .format-description
+
+  .col-md-12
+    table.playerInfo
+      thead
+        th Name
+        th Notes
+      tr.player-row(ng-repeat="player in playersList")
+        td.player-name player.name
+        td.player-notes player.notes

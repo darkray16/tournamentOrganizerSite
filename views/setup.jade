@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  script(src='/scripts/directives/presetConfigsList.js', type='text/javascript')
+  script(src='/scripts/directives/addPlayerForm.js', type='text/javascript')
+  link(rel='stylesheet', href='/styles/setup.css')
+  .tricolumn.col-xs-12.col-sm-12.col-md-4#left.presetConfigs
+    input(type="search", placeholder="fill data from previous event", size="20")#searchPreviousEvent.form-control
+    h3 Preset Configurations
+    .presetConfigsList.list-group
+      a.list-group-item.presetConfigListItem(ng-repeat="item in configs")
+        h4.list-group-item-heading.{{item.name}} 
+        p.list-group-item-text {{item.text}}
+
+  .tricolumn.col-xs-12.col-sm-6.col-md-4#middle.newEventForm
+    .addPlayerForm#addPlayerForm
+      input(type="text", placeholder="player's name", ng-model="playerName").addPlayerName.center-block.form-control
+      input(type="text", placeholder="notes about player", ng-model="playerNotes").addPlayerNote.center-block.form-control
+      button.addPlayerButton.center-block.btn.btn-default.navbar-btn(ng-click="addPlayer") Add Player
+    label(for="formats") Format
+    select(name="formats", ng-model="formats", ng-options="format.name for format in formats")
+    button.startNewEvent.btn.btn-link#startNewEvent Start Tournament
+  .tricolumn.col-xs-12.col-sm-6.col-md-4#right.newEventPlayerData
+    table.playersToAdd.table.table-condensed.table-hover#playersToAddTable
+      thead
+        thead 
+          tr
+            td Player Name
+            td Notes
+      tr(ng-repeat="player in playerList")
+        td {{player.name}}
+        td {{player.notes}}

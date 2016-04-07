@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1= title
+
+  a(href='setup').btn.btn-link New Tournament
+  hr
+  input#existingTournamentID(type='text', placeholder='tournament id')
+  input.btn.btn-link#submitExistingTournamentID(type='submit', value='Rejoin Tournament')

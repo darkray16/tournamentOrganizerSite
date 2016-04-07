@@ -1,0 +1,5 @@
+.idea
+node_modules/
+public/styles/*.css
+public/styles/*.map
+public/.sass-cache
