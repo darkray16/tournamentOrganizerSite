@@ -33,4 +33,34 @@ router.get('/getPresetConfigsList', function(req, res) {
   });
 });
 
+router.get('/getFormatsList', function(req, res) {
+  res.json({
+    formats: [
+      'swiss',
+      'round robin',
+      'single elimination',
+      'double elimination'
+    ]
+  });
+});
+
+router.post('/submitNewEvent', function(req, res) {
+  var url = require('url'),
+      url_parts = url.parse(req.url, true),
+      query = url_parts.query,
+      querystring = require('querystring');
+  // Validation to be done here...
+
+  res.sendStatus(200);
+});
+
+router.get('/verifyEvent', function(req, res) {
+  res.render('verify');
+});
+
+router.post('/submitVerifiedEvent', function(req, res) {
+  var eventid = "30303";
+  res.redirect('inprogress?eventid=' + eventid);
+});
+
 module.exports = router;

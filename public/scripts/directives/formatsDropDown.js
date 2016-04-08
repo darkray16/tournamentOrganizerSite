@@ -1,13 +1,13 @@
-tournamentOrganizerApp
-  .directive('presetConfigsList', ['$http', function($http) {
+angular.module('tournamentOrganizerApp')
+  .directive('formatsDropDown', ['$http', function($http) {
     return {
       restrict: 'C',
       link: function(scope, element, attrs) {
-        $http.get('getPresetConfigsList')
+        $http.get('getFormatsList')
           .then(
             function(result) {
               //success
-              scope.configs = result.data.presets;
+              scope.formats = result.data.formats;
             },
             function(result) {
               //failure
@@ -15,4 +15,4 @@ tournamentOrganizerApp
           );
       }
     };
-  }]);
+}]);
