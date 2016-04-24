@@ -1,0 +1,12 @@
+td.score input{
+  width:100px;
+}
+.table-hover > tbody > tr.playerRow:hover,tr.playerRow {
+  background-color:#FF4141;
+}
+.table-hover > tbody > tr:hover.playerRow.disabled, tr.playerRow.disabled {
+  background-color:#93FF93;
+}
+.progress {
+  height:45px;
+}

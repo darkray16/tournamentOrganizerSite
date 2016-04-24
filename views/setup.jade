@@ -4,10 +4,11 @@ block content
   script(src='/scripts/directives/presetConfigsList.js', type='text/javascript')
   script(src='/scripts/directives/formatsDropDown.js', type='text/javascript')
   script(src='/scripts/controllers/setupEvent.js', type='text/javascript')
+  script(src='/scripts/services/sessionStore.js', type='text/javascript')
   script(src='/scripts/services/focus.js', type='text/javascript')
   link(rel='stylesheet', href='/styles/setup.css')
 
-  div(ng-controller='setupController')
+  div(ng-controller='setupEventController')
     .tricolumn.col-xs-12.col-sm-12.col-md-4#left.presetConfigs
       input(type="search", placeholder="fill data from previous event", size="20")#searchPreviousEvent.form-control
       h3 Preset Configurations

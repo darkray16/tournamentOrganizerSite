@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoUrl = 'mongodb://localhost:27017/tournaments';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -45,22 +46,23 @@ router.get('/getFormatsList', function(req, res) {
 });
 
 router.post('/submitNewEvent', function(req, res) {
-  var url = require('url'),
-      url_parts = url.parse(req.url, true),
-      query = url_parts.query,
-      querystring = require('querystring');
-  // Validation to be done here...
+  var postData = request.body;
 
-  res.sendStatus(200);
-});
-
-router.get('/verifyEvent', function(req, res) {
-  res.render('verify');
-});
-
-router.post('/submitVerifiedEvent', function(req, res) {
-  var eventid = "30303";
-  res.redirect('inprogress?eventid=' + eventid);
+  // connect to DB
+  MongoClient.connect(mongoUrl, function(err, db) {
+    if (err) {
+      console.log(err);
+    }
+    db.collection('events').insert(postData, function(err, result) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      } else {
+        res.sendStatus(200);
+        res.json({id: postData._id});
+      }
+    });
+  });
 });
 
 module.exports = router;
