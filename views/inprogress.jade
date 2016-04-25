@@ -20,12 +20,12 @@ block content
           tr.playerRow(ng-repeat="match in matches.rounds[currentRound-1] track by $index", ng-class="lockRows[$index]")
             td.score.left
               input(type="number", min="0", ng-disabled="(lockRows[$index]=='disabled')", ng-model="matchScore[$index].left")
-            td.player.left {{playerNames[match.players[0]]}}
-            td.player.right {{playerNames[match.players[1]]}}
+            td.player.left(ng-class="highlightWinner($index, 'left')") {{playerNames[match.players[0]]}}
+            td.player.right(ng-class="highlightWinner($index, 'right')") {{playerNames[match.players[1]]}}
             td.score.right
               input(type="number", min="0", ng-disabled="(lockRows[$index]=='disabled')", ng-model="matchScore[$index].right")
             td.confirm-results
-              input(type="checkbox", ng-model="lockRows[$index]", ng-true-value="'disabled'", ng-false-value="", ng-change="checkProgress()")
+              input(type="checkbox", ng-model="lockRows[$index]", ng-true-value="'disabled'", ng-false-value="", ng-change="checkProgress($index)")
               | Confirm
       button.btn.btn-primary.btn-lg Complete Round
       .clock-area.input-group

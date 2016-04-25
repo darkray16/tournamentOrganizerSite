@@ -63,6 +63,14 @@ angular.module('tournamentOrganizerApp')
         }
         $scope.progress = totalLocked / $scope.matches.rounds[$scope.currentRound-1].length * 100;
       };
+      $scope.highlightWinner = function(row, side) {
+        var opp = side === "right" ? "left" : "right";
+        if($scope.matchScore[row][side] > $scope.matchScore[row][opp]) {
+          return "winner";
+        } else {
+          return "";
+        }
+      }
 
       $scope.timer = formdata.timer;
       $scope.format = formdata.format;

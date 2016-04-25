@@ -10,3 +10,8 @@ td.score input{
 .progress {
   height:45px;
 }
+td.player.winner {
+  background-image: url('/images/triangle.png');
+  background-repeat: no-repeat;
+  background-position:bottom;
+}
