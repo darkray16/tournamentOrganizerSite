@@ -65,4 +65,25 @@ router.post('/submitNewEvent', function(req, res) {
   });
 });
 
+router.post('/submitResults', function(req, res) {
+  var postData = request.body;
+
+
+  // connect to DB
+  MongoClient.connect(mongoUrl, function(err, db) {
+    if (err) {
+      console.log(err);
+    }
+    db.collection('events').update(postData, function(err, result) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+      } else {
+        res.sendStatus(200);
+        res.json({id: postData._id});
+      }
+    });
+  });
+});
+
 module.exports = router;

@@ -17,38 +17,38 @@ angular.module('tournamentOrganizerApp')
           "1100": "Ray"
         },
         matches: {
-          rounds: [
-            [
+          rounds: {
+            "1": [
               {
-                players: [ "1001", "2020"],
+                players: ["1001", "2020"],
                 result: {
                   "1001": 2,
                   "2020": 1
                 }
               },
               {
-                players: [ "3300", "4890"],
+                players: ["3300", "4890"],
                 result: {
                   "3300": 0,
                   "4890": 2
                 }
               },
               {
-                players: [ "1111", "0001"],
+                players: ["1111", "0001"],
                 result: {
                   "1111": 1,
                   "0001": 1
                 }
               },
               {
-                players: [ "1000", "1100"],
+                players: ["1000", "1100"],
                 result: {
                   "1000": 0,
                   "1100": 1
                 }
               }
             ]
-          ]
+          }
         }
       }
       $scope.lockRows = {};
