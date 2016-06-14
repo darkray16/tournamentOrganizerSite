@@ -2,6 +2,7 @@ extends layout
 
 block content
   script(src='/scripts/controllers/controlArea.js', type='text/javascript')
+  script(src='/scripts/services/generatePairings.js', type='text/javascript')
   script(src='/scripts/services/sessionStore.js', type='text/javascript')
   link(rel='stylesheet', href='/styles/inprogress.css')
 
@@ -16,8 +17,8 @@ block content
         .progress-bar.progress-bar-striped.active(role="progressbar", aria-valuenow="40", aria-valuemin="0", aria-valuemax="100", style="width:{{progress}}%")
 
       .player-info
-        table#playerInfo.table.table-condensed.table-hover
-          tr.playerRow(ng-repeat="match in matches.rounds[currentRound-1] track by $index", ng-class="lockRows[$index]")
+        table#playerInfo.table.table-condensed.table-hover {{currentRound}}
+          tr.playerRow(ng-repeat="match in rounds[currentRound] track by $index", ng-class="lockRows[$index]")
             td.score.left
               input(type="number", min="0", ng-disabled="(lockRows[$index]=='disabled')", ng-model="matchScore[$index].left")
             td.player.left(ng-class="highlightWinner($index, 'left')") {{playerNames[match.players[0]]}}
@@ -27,7 +28,7 @@ block content
             td.confirm-results
               input(type="checkbox", ng-model="lockRows[$index]", ng-true-value="'disabled'", ng-false-value="", ng-change="checkProgress($index)")
               | Confirm
-      button.btn.btn-primary.btn-lg Complete Round
+      button.btn.btn-primary.btn-lg(ng-click="finishRound()") Complete Round
       .clock-area.input-group
         span.format(ng-repeat="format in time.formats").input-group-btn 
           button.btn.btn-secondary(type="button") {{format.name}}
